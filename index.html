@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Autenticación</title>
+    <link rel="stylesheet" href="css\estilos.css">
+</head>
+<body>
+    <div class="container">
+        <!-- MÓDULO DE REGISTRO -->
+        <div id="registerModule" class="module active">
+            <h2>Crear Cuenta</h2>
+            <p class="subtitle">Completa todos los campos para registrarte</p>
+            
+            <div id="registerMessage" class="message"></div>
+            
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="fullName">Nombre Completo</label>
+                    <input type="text" id="fullName" placeholder="Ej: Juan Pérez">
+                    <div class="error-message" id="nameError">El nombre solo debe contener letras y espacios</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="registerEmail">Correo Electrónico (Usuario)</label>
+                    <input type="email" id="registerEmail" placeholder="ejemplo@correo.com">
+                    <div class="error-message" id="emailError">Ingresa un correo electrónico válido</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Número de Móvil</label>
+                    <input type="tel" id="phone" placeholder="Ej: 71234567">
+                    <div class="error-message" id="phoneError">El número debe tener entre 7 y 12 dígitos</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="registerPassword">Contraseña</label>
+                    <input type="password" id="registerPassword" placeholder="Crea una contraseña segura">
+                    <div class="password-requirements">
+                        Debe contener: mínimo 6 caracteres, una mayúscula, una minúscula, un número y un carácter especial
+                    </div>
+                    <div class="error-message" id="passwordError">La contraseña no cumple con los requisitos de seguridad</div>
+                    <div class="password-toggle">
+                        <input type="checkbox" id="showRegisterPassword">
+                        <label for="showRegisterPassword">Mostrar contraseña</label>
+                    </div>
+                </div>
+
+                <button type="submit">Crear Cuenta</button>
+                <button type="button" class="link-button" onclick="showModule('login')">
+                    ¿Ya tienes cuenta? Inicia sesión
+                </button>
+            </form>
+        </div>
+
+        <!-- MÓDULO DE INICIO DE SESIÓN -->
+        <div id="loginModule" class="module">
+            <h2>Iniciar Sesión</h2>
+            <p class="subtitle">Ingresa con tu cuenta registrada</p>
+            
+            <div id="loginMessage" class="message"></div>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Correo Electrónico</label>
+                    <input type="email" id="loginEmail" placeholder="ejemplo@correo.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="loginPassword">Contraseña</label>
+                    <input type="password" id="loginPassword" placeholder="Tu contraseña">
+                    <div class="password-toggle">
+                        <input type="checkbox" id="showLoginPassword">
+                        <label for="showLoginPassword">Mostrar contraseña</label>
+                    </div>
+                </div>
+
+                <div class="attempts-info" id="attemptsInfo"></div>
+
+                <button type="submit">Iniciar Sesión</button>
+                <button type="button" class="link-button" id="recoverLink" onclick="showModule('recover')" style="display: none;">
+                    Recuperar contraseña
+                </button>
+                <button type="button" class="link-button" onclick="showModule('register')">
+                    ¿No tienes cuenta? Regístrate
+                </button>
+            </form>
+        </div>
+
+        <!-- MÓDULO DE RECUPERACIÓN -->
+        <div id="recoverModule" class="module">
+            <h2>Recuperar Contraseña</h2>
+            <p class="subtitle">Crea una nueva contraseña segura</p>
+            
+            <div id="recoverMessage" class="message"></div>
+            
+            <form id="recoverForm">
+                <div class="form-group">
+                    <label for="recoverEmail">Correo Electrónico</label>
+                    <input type="email" id="recoverEmail" placeholder="ejemplo@correo.com">
+                    <div class="error-message" id="recoverEmailError">Ingresa el correo de tu cuenta</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="newPassword">Nueva Contraseña</label>
+                    <input type="password" id="newPassword" placeholder="Nueva contraseña segura">
+                    <div class="password-requirements">
+                        Debe contener: mínimo 6 caracteres, una mayúscula, una minúscula, un número y un carácter especial
+                    </div>
+                    <div class="error-message" id="newPasswordError">La contraseña no cumple con los requisitos</div>
+                    <div class="password-toggle">
+                        <input type="checkbox" id="showNewPassword">
+                        <label for="showNewPassword">Mostrar contraseña</label>
+                    </div>
+                </div>
+
+                <button type="submit">Actualizar Contraseña</button>
+                <button type="button" class="link-button" onclick="showModule('login')">
+                    Volver al inicio de sesión
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js\main.js"></script>
+</body>
+</html>
