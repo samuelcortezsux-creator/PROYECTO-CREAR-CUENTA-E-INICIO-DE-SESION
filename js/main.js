@@ -1,3 +1,96 @@
+// ================================================
+// EXPRESIONES REGULARES BÁSICAS
+// ================================================
+
+const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const nameRegex = /^[A-Za-zÁÉÍÓÚÑáéíóúñ ]+$/;
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
+const phoneRegex = /^[0-9]{7,12}$/;
+
+// ================================================
+// VARIABLES MUY SIMPLES PARA GUARDAR 1 USUARIO
+// ================================================
+
+let savedName = "";
+let savedEmail = "";
+let savedPhone = "";
+let savedPassword = "";
+
+// ================================================
+// REGISTRO MUY BÁSICO
+// ================================================
+
+document.getElementById("registerForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let name = document.getElementById("fullName").value.trim();
+    let email = document.getElementById("registerEmail").value.trim();
+    let phone = document.getElementById("phone").value.trim();
+    let password = document.getElementById("registerPassword").value;
+
+    // Validaciones simples
+    if (!nameRegex.test(name)) {
+        alert("Nombre inválido");
+        return;
+    }
+
+    if (!emailRegex.test(email)) {
+        alert("Correo inválido");
+        return;
+    }
+
+    if (!phoneRegex.test(phone)) {
+        alert("Celular inválido");
+        return;
+    }
+
+    if (!passwordRegex.test(password)) {
+        alert("La contraseña debe tener mayúscula, minúscula y número");
+        return;
+    }
+
+    // Guardar en variables simples
+    savedName = name;
+    savedEmail = email;
+    savedPhone = phone;
+    savedPassword = password;
+
+    alert("Registro exitoso, ahora inicie sesión.");
+    this.reset();
+});
+
+// ================================================
+// LOGIN BÁSICO
+// ================================================
+
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let email = document.getElementById("loginEmail").value.trim();
+    let password = document.getElementById("loginPassword").value;
+
+    if (email === savedEmail && password === savedPassword) {
+        alert("Bienvenido " + savedName);
+    } else {
+        alert("Correo o contraseña incorrectos");
+    }
+
+    this.reset();
+});
+
+// ================================================
+// MOSTRAR / OCULTAR CONTRASEÑA
+// ================================================
+
+document.getElementById("showRegisterPassword").addEventListener("change", function() {
+    let p = document.getElementById("registerPassword");
+    p.type = this.checked ? "text" : "password";
+});
+
+document.getElementById("showLoginPassword").addEventListener("change", function() {
+    let p = document.getElementById("loginPassword");
+    p.type = this.checked ? "text" : "password";
+});
 /* ================================================
 EXPRESIONES REGULARES Y SU EXPLICACIÓN
 ================================================
@@ -308,4 +401,5 @@ document.getElementById('showLoginPassword').addEventListener('change', function
 document.getElementById('showNewPassword').addEventListener('change', function() {
     const passwordInput = document.getElementById('newPassword');
     passwordInput.type = this.checked ? 'text' : 'password';
+
 });
